@@ -21,3 +21,10 @@ This library does one thing: `a + t * (b - a)` with no clamping. The trade-off i
 - `t = 0` returns `a`; `t = 1` returns `b`.
 - `NaN` in any argument propagates as `NaN`. This is deliberate — swallowing `NaN` into a zero would hide upstream data bugs.
 - When `a === b` and `t` is finite, the result is `a` regardless of `t`. When `a === b` and `t` is `Infinity`, the result is `NaN` because `Infinity * 0` is `NaN` under IEEE-754. If you interpolate over a zero-width interval with an unbounded parameter, check your inputs.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
