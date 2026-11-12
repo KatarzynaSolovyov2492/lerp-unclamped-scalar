@@ -1,6 +1,6 @@
 {
   "name": "lerp-unclamped-scalar",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Linear interpolation between two scalar values, allowing extrapolation beyond the standard range",
   "type": "module",
   "main": "src/index.js",
